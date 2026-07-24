@@ -292,3 +292,61 @@ body {
     background: rgba(0, 230, 118, 0.1) !important;
     border: 1px solid rgba(0, 230, 118, 0.2);
 }
+
+/* --- SEMI-TRANSPARENT BLACK BACKDROP & SPOTLIGHT TOUR --- */
+.tour-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.82);
+    z-index: 1100;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+}
+
+.tour-highlight {
+    position: relative !important;
+    z-index: 1200 !important;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 240, 255, 0.9) !important;
+    border-color: #00f0ff !important;
+    animation: tour-pulse-glow 2s infinite alternate !important;
+}
+
+@keyframes tour-pulse-glow {
+    from { transform: scale(1.00); }
+    to { transform: scale(1.01); }
+}
+
+.tour-card-dialog {
+    z-index: 1300 !important;
+}
+
+.btn-cyan, .btn-cyan:hover, .btn-cyan:focus, .btn-cyan:active {
+    background: linear-gradient(90deg, #00d9ff, #26f8ff) !important;
+    border: none !important;
+    color: #021116 !important;
+    font-weight: 700;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    border-radius: 50px;
+}
+.btn-cyan:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+}
+
+.btn-outline-cyan {
+    background: transparent !important;
+    border: 1.5px solid rgba(0, 240, 255, 0.45) !important;
+    color: #26f8ff !important;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    border-radius: 8px;
+}
+.btn-outline-cyan:hover {
+    background: rgba(0, 240, 255, 0.15) !important;
+    border-color: #26f8ff !important;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}

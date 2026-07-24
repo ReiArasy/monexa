@@ -24,22 +24,27 @@
                     <span class="badge bg-danger position-absolute translate-middle rounded-pill p-1" id="chatBadge" style="font-size: 0.5rem; top: 5px; right: -5px;">1</span>
                 </div>
                 
-                <!-- Floating Chat Widget -->
-                <div class="lumo-chat-widget d-none" id="lumoFloatingChat" style="position: absolute; top: 50px; right: 0; width: 320px; background: rgba(5, 12, 28, 0.95); border: 1.5px solid rgba(0, 240, 255, 0.2); border-radius: 12px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
-                    <div class="chat-header d-flex justify-content-between align-items-center p-3 border-bottom border-secondary border-opacity-20">
-                        <span class="font-orbitron text-cyan fs-7 fw-bold"><i class="bi bi-robot me-1"></i>LUMO CORE v1.2</span>
-                        <button type="button" class="btn-close btn-close-white" style="font-size: 0.7rem;" id="closeLumoChat"></button>
+                <!-- Lumo Sidebar Chatbot -->
+                <div class="lumo-sidebar-chat" id="lumoFloatingChat" style="position: fixed; top: 0; right: 0; width: 400px; height: 100vh; background: rgba(3, 10, 24, 0.95); border-left: 2.5px solid rgba(0, 240, 255, 0.25); z-index: 2000; box-shadow: -10px 0 35px rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;">
+                    <div class="chat-header d-flex justify-content-between align-items-center p-3 border-bottom border-secondary border-opacity-20" style="background: rgba(0, 240, 255, 0.05);">
+                        <span class="font-orbitron text-cyan fs-6 fw-bold"><i class="bi bi-robot me-2"></i>LUMO CORE v1.2</span>
+                        <button type="button" class="btn-close btn-close-white" id="closeLumoChat"></button>
                     </div>
-                    <div class="chat-messages p-3 text-start" id="chatMessages" style="max-height: 200px; overflow-y: auto; font-family: var(--font-inter); font-size: 0.85rem; line-height: 1.5;">
-                        <div class="chat-bubble mb-3 p-2 rounded" style="background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.15);">
+                    <div class="chat-messages p-4 text-start flex-grow-1" id="chatMessages" style="overflow-y: auto; font-family: var(--font-inter); font-size: 0.9rem; line-height: 1.6;">
+                        <div class="chat-bubble mb-3 p-3 rounded" style="background: rgba(0, 240, 255, 0.04); border: 1px solid rgba(0, 240, 255, 0.12);">
                             <span class="small text-cyan font-orbitron d-block mb-1">LUMO AI</span>
-                            Selamat datang, Cadet! Aku siap membantumu mempelajari aturan investasi (IOSCO OECD). Ada yang ingin ditanyakan?
+                            Selamat datang di deck utama, Cadet! Aku siap membantumu memahami hukum pasar (IOSCO OECD). Apa yang sedang mengganjal logikamu?
                         </div>
                     </div>
-                    <div class="chat-input-options p-3 border-top border-secondary border-opacity-20 d-flex flex-column gap-2 text-start" id="chatInputOptions">
-                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.75rem;" data-q="area1">Apa itu IOSCO Area 1?</button>
-                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.75rem;" data-q="area5">Apa hak investor (Area 5)?</button>
-                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.75rem;" data-q="area7">Bagaimana menghindari scam (Area 7)?</button>
+                    <div class="chat-input-options p-3 border-top border-secondary border-opacity-20 d-flex flex-column gap-2 text-start" id="chatInputOptions" style="background: rgba(4, 12, 28, 0.4);">
+                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.8rem;" data-q="area1">Apa itu IOSCO Area 1?</button>
+                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.8rem;" data-q="area5">Apa hak investor (Area 5)?</button>
+                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.8rem;" data-q="area7">Bagaimana menghindari scam (Area 7)?</button>
+                    </div>
+                    <!-- Custom Input Message Box -->
+                    <div class="p-3 border-top border-secondary border-opacity-20 d-flex gap-2" style="background: rgba(2, 6, 16, 0.9);">
+                        <input type="text" class="form-control text-light" id="lumoCustomInput" placeholder="Tanyakan ke Lumo..." style="background: rgba(0,0,0,0.5); border: 1px solid rgba(0, 240, 255, 0.2); font-size: 0.9rem; color: #fff;">
+                        <button class="btn btn-cyan px-3" id="btnSendLumoMessage" style="font-family: var(--font-orbitron); font-weight: 700; font-size: 0.85rem;">KIRIM</button>
                     </div>
                 </div>
             </div>

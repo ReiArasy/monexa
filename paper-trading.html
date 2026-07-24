@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style-papertrading.css">
 </head>
 <body>
-
+    <div class="tour-backdrop d-none" id="tourBackdrop"></div>
     <div id="mouseGlow"></div>
 
     <main class="trading-screen p-3 p-md-4">
@@ -150,7 +150,7 @@
       </div>
     </div>
     <!-- Lumo Component Tour Guide Overlay Card -->
-    <div class="tour-guide-card p-4 rounded-3 d-none" id="lumoTourCard" style="position: fixed; bottom: 20px; right: 20px; width: 340px; background: rgba(4, 12, 28, 0.95); border: 2px solid #00f0ff; z-index: 1100; box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+    <div class="tour-guide-card tour-card-dialog p-4 rounded-3 d-none" id="lumoTourCard" style="position: fixed; bottom: 20px; right: 20px; width: 340px; background: rgba(4, 12, 28, 0.96); border: 2.5px solid #00f0ff; z-index: 1300; box-shadow: 0 0 35px rgba(0, 240, 255, 0.35); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
         <div class="d-flex align-items-center gap-2 mb-2">
             <img src="assets/lumo.png" alt="Lumo" class="logo-mini" style="width: 30px; height: 30px;">
             <span class="font-orbitron text-cyan fw-bold fs-7">LUMO CORE TOUR</span>
@@ -158,9 +158,9 @@
         <h6 class="text-white fw-bold font-orbitron mb-2" id="tourTitle">Welcome to the Practice Arena</h6>
         <p class="text-secondary small mb-3" id="tourDesc">Di sini kamu bisa melatih keputusan investasimu secara aman tanpa risiko modal nyata.</p>
         <div class="d-flex justify-content-between align-items-center pt-2 border-top border-secondary border-opacity-10">
-            <button class="btn btn-sm btn-outline-secondary font-orbitron text-muted" id="btnSkipTour" style="font-size: 0.7rem;">SKIP</button>
+            <button class="btn btn-sm btn-outline-cyan font-orbitron" id="btnSkipTour" style="font-size: 0.75rem; color: #fff !important; border-color: rgba(0, 240, 255, 0.4) !important;">SKIP</button>
             <span class="text-secondary small font-orbitron" id="tourProgress">1/6</span>
-            <button class="btn btn-cyan btn-sm font-orbitron" id="btnNextTour" style="font-size: 0.7rem;">LANJUT</button>
+            <button class="btn btn-cyan btn-sm font-orbitron" id="btnNextTour" style="font-size: 0.75rem; padding: 6px 16px;">LANJUT</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

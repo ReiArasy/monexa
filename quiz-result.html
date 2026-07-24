@@ -89,11 +89,19 @@
             const resultStatusBadge = document.getElementById("result-status-badge");
             const resultFeedback = document.getElementById("result-feedback");
             const impactDetail = document.getElementById("impact-detail");
-            
+            const btnContinue = document.getElementById("btnContinueResult");
+
+            // Retrieve and calculate real-time hull integrity
+            let currentHull = localStorage.getItem("hull_integrity") ? parseInt(localStorage.getItem("hull_integrity")) : 96;
+            let targetHull = currentHull;
+
             if (isCorrect) {
-                // Correct path
-                hullValue.innerText = "100%";
-                hullProgressBar.style.width = "100%";
+                // Correct answer: hull stays constant (no decrease, no increase)
+                targetHull = currentHull;
+                localStorage.setItem("hull_integrity", targetHull);
+
+                hullValue.innerText = targetHull + "%";
+                hullProgressBar.style.width = targetHull + "%";
                 hullProgressBar.style.setProperty("background-color", "#00e676", "important");
                 
                 resultIcon.className = "bi bi-shield-fill-check text-success";
@@ -107,12 +115,35 @@
                 resultStatusBadge.className = "badge bg-success font-orbitron px-3 py-2 mb-4";
                 
                 resultFeedback.innerHTML = `Obligasi (Surat Utang Negara) memang menawarkan stabilitas tinggi di kedalaman rendah (The Shallow). Kupon bunga tetap yang dibayarkan secara berkala memberikan aliran kas yang dapat diandalkan tanpa risiko penurunan modal yang besar seperti saham di zona yang lebih bergolak.`;
-                impactDetail.innerHTML = `<span class="text-success fw-bold"><i class="bi bi-arrow-up-circle-fill"></i> INTEGRITAS LAMBUNG MAKSIMAL (+5%): 100%</span><br><span class="text-cyan small font-orbitron">+100 XP CADET DIBERIKAN</span>`;
+                impactDetail.innerHTML = `<span class="text-success fw-bold"><i class="bi bi-shield-fill-check"></i> INTEGRITAS LAMBUNG STABIL: ${targetHull}%</span><br><span class="text-cyan small font-orbitron">+100 XP CADET DIBERIKAN</span>`;
+
+                btnContinue.setAttribute("href", "paper-trading.html");
+                btnContinue.innerText = "LANJUTKAN NAVIGASI";
             } else {
-                // Incorrect path
-                hullValue.innerText = "86%";
-                hullProgressBar.style.width = "86%";
+                // Incorrect path: deduct 10%
+                targetHull = Math.max(0, currentHull - 10);
+                localStorage.setItem("hull_integrity", targetHull);
+
+                // Add alarm overlay to the body
+                const alarm = document.createElement("div");
+                alarm.className = "warning-alarm-overlay";
+                document.body.appendChild(alarm);
+
+                // Setup animation from current to target
+                hullValue.innerText = currentHull + "%";
+                hullProgressBar.style.width = currentHull + "%";
                 hullProgressBar.style.setProperty("background-color", "#ff3d71", "important");
+
+                let tempHull = currentHull;
+                const animInterval = setInterval(() => {
+                    if (tempHull > targetHull) {
+                        tempHull--;
+                        hullValue.innerText = tempHull + "%";
+                        hullProgressBar.style.width = tempHull + "%";
+                    } else {
+                        clearInterval(animInterval);
+                    }
+                }, 40);
                 
                 resultIcon.className = "bi bi-shield-fill-exclamation text-danger";
                 resultIconBadge.style.borderColor = "#ff3d71";
@@ -124,8 +155,13 @@
                 resultStatusBadge.innerText = "COGNITIVE ERROR TERDETEKSI";
                 resultStatusBadge.className = "badge bg-danger font-orbitron px-3 py-2 mb-4";
                 
-                resultFeedback.innerHTML = `Pilihan Anda salah. Di kedalaman The Shallow, obligasi lebih unggul karena memberikan pendapatan tetap berupa kupon berkala yang stabil. Saham atau spekulasi berisiko tinggi dapat membocorkan integritas lambung Anda akibat fluktuasi tekanan pasar yang tidak terkendali.`;
-                impactDetail.innerHTML = `<span class="text-danger fw-bold"><i class="bi bi-arrow-down-circle-fill"></i> KEBOCORAN LAMBUNG TERDETEKSI (-10%): 86%</span><br><span class="text-secondary small font-orbitron">SHIELD MENIPIS: REKONSILIASI KOGNITIF DIANJURKAN PADA MISI BERIKUTNYA</span>`;
+                resultFeedback.innerHTML = `Pilihan Anda salah. Di kedalaman The Shallow, obligasi lebih unggul karena memberikan pendapatan tetap berupa kupon berkala yang stabil. Saham atau spekulasi berisiko tinggi dapat membocorkan integritas lambung Anda sebesar 10% akibat fluktuasi tekanan pasar yang tidak terkendali.`;
+                impactDetail.innerHTML = `<span class="text-danger fw-bold"><i class="bi bi-arrow-down-circle-fill"></i> KEBOCORAN LAMBUNG TERDETEKSI (-10%): ${targetHull}%</span><br><span class="text-secondary small font-orbitron">SHIELD MENIPIS: REKONSILIASI KOGNITIF DIWAJIBKAN SEBELUM NAVIGASI LANJUT</span>`;
+
+                btnContinue.setAttribute("href", "quiz.html");
+                btnContinue.innerText = "REKONSILIASI KOGNITIF (JAWAB ULANG)";
+                btnContinue.style.backgroundColor = "#ff3d71";
+                btnContinue.style.boxShadow = "0 0 20px rgba(255, 61, 113, 0.4)";
             }
         });
     </script>

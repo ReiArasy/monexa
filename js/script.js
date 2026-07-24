@@ -3,6 +3,12 @@
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Global Page Entrance Fade Transition
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 0.6s ease-in-out";
+    requestAnimationFrame(() => {
+        document.body.style.opacity = "1";
+    });
 
     /* --- 1. NAVBAR SCROLL EFFECT --- */
     const navbar = document.querySelector(".navbar");
@@ -235,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* --- 12-B. LUMO AI FLOATING CHAT LOGIC --- */
+    /* --- 12-B. LUMO AI SIDEBAR CHATBOT LOGIC --- */
     const chatTrigger = document.getElementById("lumoChatTrigger");
     const chatWidget = document.getElementById("lumoFloatingChat");
     const closeChatBtn = document.getElementById("closeLumoChat");
@@ -244,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (chatTrigger && chatWidget) {
         chatTrigger.addEventListener("click", () => {
-            chatWidget.classList.toggle("d-none");
+            chatWidget.classList.toggle("open");
             if (chatBadge) chatBadge.classList.add("d-none"); // Hide notification badge
         });
     }
@@ -252,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (closeChatBtn && chatWidget) {
         closeChatBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            chatWidget.classList.add("d-none");
+            chatWidget.classList.remove("open");
         });
     }
 
@@ -297,13 +303,65 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Custom Lumo AI text message input
+    const lumoInput = document.getElementById("lumoCustomInput");
+    const sendLumoBtn = document.getElementById("btnSendLumoMessage");
+
+    function sendLumoMessage() {
+        if (!lumoInput || !chatMessages) return;
+        const text = lumoInput.value.trim();
+        if (!text) return;
+
+        // Render cadet message
+        const userMsgDiv = document.createElement("div");
+        userMsgDiv.className = "chat-bubble user-bubble mb-3 p-2 rounded text-end";
+        userMsgDiv.style.background = "rgba(255, 255, 255, 0.03)";
+        userMsgDiv.style.border = "1px solid rgba(255, 255, 255, 0.08)";
+        userMsgDiv.innerHTML = `<span class="small text-secondary font-orbitron d-block mb-1">CADET ${cadetName.toUpperCase()}:</span>${text}`;
+        chatMessages.appendChild(userMsgDiv);
+
+        lumoInput.value = "";
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Generate response
+        setTimeout(() => {
+            let responseText = "Pertanyaan menarik, Cadet! Sensor saya menganalisis bahwa materi ini membahas pentingnya perlindungan modal dan regulasi OJK.";
+            const lowerText = text.toLowerCase();
+            if (lowerText.includes("scam") || lowerText.includes("ponzi") || lowerText.includes("tipu")) {
+                responseText = "Untuk menghindari scam, selalu verifikasi izin legalitas entitas (legal & logis) ke OJK. Skema ponzi biasanya menjanjikan keuntungan tetap tinggi tanpa risiko.";
+            } else if (lowerText.includes("area 1") || lowerText.includes("dasar")) {
+                responseText = "Prinsip dasar investasi (IOSCO Area 1) menekankan pemahaman time value of money dan hubungan positif antara risk & return.";
+            } else if (lowerText.includes("hak") || lowerText.includes("area 5")) {
+                responseText = "Sebagai investor (Area 5), Anda berhak mendapatkan informasi produk investasi yang akurat dan transparan serta perlindungan hukum OJK.";
+            }
+
+            const lumoMsgDiv = document.createElement("div");
+            lumoMsgDiv.className = "chat-bubble mb-3 p-2 rounded";
+            lumoMsgDiv.style.background = "rgba(0, 240, 255, 0.05)";
+            lumoMsgDiv.style.border = "1px solid rgba(0, 240, 255, 0.15)";
+            lumoMsgDiv.innerHTML = `<span class="small text-cyan font-orbitron d-block mb-1">LUMO AI:</span>${responseText}`;
+            chatMessages.appendChild(lumoMsgDiv);
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 800);
+    }
+
+    if (sendLumoBtn) {
+        sendLumoBtn.addEventListener("click", sendLumoMessage);
+    }
+    if (lumoInput) {
+        lumoInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendLumoMessage();
+            }
+        });
+    }
+
     /* --- 13. ONBOARDING & MAP DESC NAVIGATION FLOW --- */
     const startDiveBtn = document.getElementById("btnStartDive");
     const startDescentBtn = document.getElementById("btnStartDescent");
     const nodeTheShallows = document.getElementById("nodeTheShallows");
     const nodeCoralDepths = document.getElementById("nodeCoralDepths");
-    const onboardingModalElement = document.getElementById("onboardingModal");
-    const onboardingModal = onboardingModalElement ? new bootstrap.Modal(onboardingModalElement) : null;
 
     function handleStartNavigation(e) {
         if (e) e.preventDefault();
@@ -311,14 +369,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const riskProfileVal = localStorage.getItem("risk_profile");
         if (cadetNameVal) {
             if (riskProfileVal) {
-                window.location.href = "unlocked_materi.html";
+                window.location.href = "map.html";
             } else {
                 window.location.href = "initial-assessment.html";
             }
-        } else if (onboardingModal) {
-            onboardingModal.show();
         } else {
-            window.location.href = "initial-assessment.html";
+            window.location.href = "onboarding.html";
         }
     }
 
@@ -326,32 +382,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (startDescentBtn) startDescentBtn.addEventListener("click", handleStartNavigation);
     if (nodeTheShallows) nodeTheShallows.addEventListener("click", handleStartNavigation);
     if (nodeCoralDepths) nodeCoralDepths.addEventListener("click", handleStartNavigation);
-
-    const btnSubmitOnboarding = document.getElementById("btnSubmitOnboarding");
-    const cadetNameInput = document.getElementById("cadetNameInput");
-    const onboardingError = document.getElementById("onboardingError");
-
-    if (btnSubmitOnboarding && cadetNameInput) {
-        btnSubmitOnboarding.addEventListener("click", () => {
-            const name = cadetNameInput.value.trim();
-            if (!name) {
-                if (onboardingError) onboardingError.classList.remove("d-none");
-            } else {
-                if (onboardingError) onboardingError.classList.add("d-none");
-                localStorage.setItem("cadetName", name);
-                if (onboardingModal) onboardingModal.hide();
-                setTimeout(() => {
-                    window.location.href = "initial-assessment.html";
-                }, 300);
-            }
-        });
-
-        cadetNameInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                btnSubmitOnboarding.click();
-            }
-        });
-    }
 
     /* --- 14. IN-PAGE TEASER QUIZ INTERACTIVITY --- */
     const teaserOptions = document.querySelectorAll(".quiz-card .option");
@@ -430,6 +460,16 @@ document.addEventListener("mousemove", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Sync HUD Hull Integrity
+    const hullValEl = document.getElementById("hull-value");
+    if (hullValEl) {
+        const currentHull = localStorage.getItem("hull_integrity") || "96";
+        hullValEl.innerText = currentHull + "%";
+        const customProgress = document.querySelector(".progress-bar");
+        if (customProgress) {
+            customProgress.style.width = currentHull + "%";
+        }
+    }
 
     /* --- 1. HANDLING LOGIKA KLIK JAWABAN QUIZ --- */
     const optionButtons = document.querySelectorAll(".option-btn");
@@ -663,6 +703,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!tourCard) return;
         currentTourStep = 0;
         tourCard.classList.remove("d-none");
+        const backdrop = document.getElementById("tourBackdrop");
+        if (backdrop) backdrop.classList.remove("d-none");
         showTourStep(0);
     }
 
@@ -711,6 +753,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function finishTour() {
         if (tourCard) tourCard.classList.add("d-none");
+        const backdrop = document.getElementById("tourBackdrop");
+        if (backdrop) backdrop.classList.add("d-none");
         document.querySelectorAll(".tour-highlight").forEach(el => {
             el.classList.remove("tour-highlight");
         });
