@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monexa OS - Cermin Keputusan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-papertrading.css">
+    <style>
+        .ending-screen {
+            min-height: 100vh;
+            background: radial-gradient(circle at 50% 50%, rgba(2, 7, 18, 0.4) 0%, rgba(1, 4, 10, 0.95) 90%), 
+                        url('assets/hero-bg.jpg') no-repeat center center / cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .ending-card {
+            background: rgba(4, 12, 28, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1.5px solid rgba(255, 193, 7, 0.2);
+            box-shadow: 0 0 35px rgba(255, 193, 7, 0.15);
+            border-radius: 16px;
+            max-width: 550px;
+            padding: 40px;
+            text-align: center;
+        }
+        .icon-glow-container {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid #ffc107;
+            box-shadow: 0 0 25px rgba(255, 193, 7, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffc107;
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+        .text-glow-yellow {
+            text-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="ending-screen">
+        
+        <div class="text-center mt-4">
+            <h2 class="font-orbitron text-white fw-bold mb-2 tracking-widest">CERMIN KEPUTUSAN</h2>
+            <p class="text-secondary small">Hasil dari perjalananmu ditentukan oleh setiap langkah yang kamu ambil.</p>
+        </div>
+
+        <div class="ending-card my-auto">
+            <div class="icon-glow-container">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+            </div>
+            
+            <h3 class="font-orbitron text-white fw-bold mb-3 text-glow-yellow">The Fearful Diver</h3>
+            
+            <p class="text-light leading-relaxed mb-0 opacity-90">
+                Waspada yang berlebihan, kehilangan kesempatan emas karena takut akan kedalaman yang tidak dikenal.
+            </p>
+        </div>
+
+        <div class="d-flex gap-3 mb-4">
+            <button class="btn btn-outline-warning font-orbitron px-4 py-3 text-warning border-warning" onclick="restartJourney()">RESTART JOURNEY</button>
+            <button class="btn btn-cyan font-orbitron px-4 py-3" data-bs-toggle="modal" data-bs-target="#legacyModal">VIEW LEGACY</button>
+        </div>
+
+    </main>
+
+    <!-- Legacy Stats Modal -->
+    <div class="modal fade" id="legacyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content execution-modal-content p-4">
+                <div class="modal-header border-0 justify-content-between pb-0">
+                    <h5 class="modal-title font-orbitron text-cyan text-glow">REKAM JEJAK LEGACY</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-light">
+                    <div class="p-3 rounded-3 mb-3" style="background: rgba(2, 6, 14, 0.8); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <small class="text-secondary d-block font-orbitron">CADET NAME:</small>
+                                <strong class="text-white" id="modalCadetName">CADET</strong>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-secondary d-block font-orbitron">RISK PROFILE:</small>
+                                <strong class="text-warning" id="modalRiskProfile">CONSERVATIVE</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-3" style="background: rgba(2, 6, 14, 0.8); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <small class="text-secondary d-block font-orbitron">INTEGRITAS LAMBUNG:</small>
+                                <strong class="text-success">100% (PERFECT)</strong>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-secondary d-block font-orbitron">SALDO AKHIR:</small>
+                                <strong class="text-danger">IDR 3.700.000</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a class="btn btn-cyan w-100 font-orbitron" href="gamification.html">PAPAN PERINGKAT GLOBAL</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cadetName = localStorage.getItem("cadetName") || "Penyelam";
+            const riskProfile = localStorage.getItem("risk_profile") || "conservative";
+
+            document.getElementById("modalCadetName").innerText = cadetName.toUpperCase();
+            document.getElementById("modalRiskProfile").innerText = riskProfile.toUpperCase();
+        });
+
+        function restartJourney() {
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

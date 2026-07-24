@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monexa OS - Real Market Zone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-papertrading.css">
+    <style>
+        .market-card {
+            background: rgba(5, 12, 28, 0.95);
+            border: 1.5px solid var(--border-glass);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 24px;
+        }
+        .text-green-neon {
+            color: #00e676 !important;
+            text-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+        }
+        .text-rose-neon {
+            color: #ff3d71 !important;
+            text-shadow: 0 0 10px rgba(255, 61, 113, 0.4);
+        }
+        .badge-positive {
+            background: rgba(0, 230, 118, 0.1);
+            color: #00e676;
+            border: 1px solid rgba(0, 230, 118, 0.2);
+            font-family: var(--font-orbitron);
+            font-size: 0.7rem;
+        }
+        .badge-negative {
+            background: rgba(255, 61, 113, 0.1);
+            color: #ff3d71;
+            border: 1px solid rgba(255, 61, 113, 0.2);
+            font-family: var(--font-orbitron);
+            font-size: 0.7rem;
+        }
+        .badge-neutral {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            font-family: var(--font-orbitron);
+            font-size: 0.7rem;
+        }
+        .table-market th {
+            font-family: var(--font-orbitron);
+            font-size: 0.75rem;
+            color: #475569;
+            letter-spacing: 1px;
+            border-bottom: 2px solid rgba(255,255,255,0.05);
+        }
+        .table-market td {
+            vertical-align: middle;
+            color: #e2e8f0;
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+            font-family: var(--font-inter);
+            padding: 14px 8px;
+        }
+        .table-market tr:hover td {
+            background: rgba(255,255,255,0.01);
+        }
+        .sparkline-svg {
+            stroke: #00f0ff;
+            stroke-width: 1.5;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mouseGlow"></div>
+
+    <main class="trading-screen p-3 p-md-4">
+        
+        <header class="d-flex justify-content-between align-items-center mb-4 navbar-trading p-2 rounded-3">
+            <a class="btn btn-icon-nav d-flex align-items-center justify-content-center" href="index.html"><i class="bi bi-arrow-left"></i></a>
+            <div class="text-center">
+                <h5 class="title-core tracking-widest text-white mb-0 font-orbitron">REAL MARKET ZONE</h5>
+                <small class="text-cyan tracking-wider font-orbitron fs-8">INTELLIGENCE RADAR & VALUATION DASHBOARD</small>
+            </div>
+            <button class="btn btn-icon-nav" data-bs-toggle="modal" data-bs-target="#marketHelpModal"><i class="bi bi-info-circle"></i></button>
+        </header>
+
+        <div class="row g-4">
+            <!-- Left Column: Stocks Dashboard -->
+            <div class="col-lg-8">
+                <div class="market-card p-4 h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="font-orbitron text-white mb-0"><i class="bi bi-cpu text-cyan me-2"></i>INSTRUMEN SAHAM DEEP-SEA</h5>
+                        <span class="badge bg-dark border border-secondary text-cyan font-orbitron">LIVE SONAR FEED</span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-dark table-borderless table-market mb-0">
+                            <thead>
+                                <tr>
+                                    <th>KODE</th>
+                                    <th>NAMA PERUSAHAAN</th>
+                                    <th>HARGA (IDR)</th>
+                                    <th>PERUBAHAN</th>
+                                    <th>TREN (24H)</th>
+                                    <th class="text-end">TINDAKAN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-orbitron fw-bold text-cyan">ABYS</td>
+                                    <td>Abyssal Mining Corp</td>
+                                    <td class="font-orbitron">4.250</td>
+                                    <td class="font-orbitron text-green-neon">+195 (+4.8%)</td>
+                                    <td>
+                                        <svg class="sparkline-svg" width="70" height="20">
+                                            <path d="M 0 15 L 15 12 L 30 18 L 45 8 L 60 5 L 70 2" stroke="#00e676"/>
+                                        </svg>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-outline-cyan font-orbitron px-3" onclick="showAssetDetail('ABYS')">INFO</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-orbitron fw-bold text-cyan">LUMO</td>
+                                    <td>Lumo AI Companion</td>
+                                    <td class="font-orbitron">8.100</td>
+                                    <td class="font-orbitron text-green-neon">+96 (+1.2%)</td>
+                                    <td>
+                                        <svg class="sparkline-svg" width="70" height="20">
+                                            <path d="M 0 18 L 15 17 L 30 10 L 45 12 L 60 8 L 70 5" stroke="#00e676"/>
+                                        </svg>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-outline-cyan font-orbitron px-3" onclick="showAssetDetail('LUMO')">INFO</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-orbitron fw-bold text-cyan">MKMR</td>
+                                    <td>Makmur Maritime</td>
+                                    <td class="font-orbitron">1.950</td>
+                                    <td class="font-orbitron text-rose-neon">-50 (-2.5%)</td>
+                                    <td>
+                                        <svg class="sparkline-svg" width="70" height="20">
+                                            <path d="M 0 5 L 15 8 L 30 5 L 45 15 L 60 12 L 70 18" stroke="#ff3d71"/>
+                                        </svg>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-outline-cyan font-orbitron px-3" onclick="showAssetDetail('MKMR')">INFO</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-orbitron fw-bold text-cyan">VOCS</td>
+                                    <td>Banda Spice Exchange</td>
+                                    <td class="font-orbitron">620</td>
+                                    <td class="font-orbitron text-rose-neon">-5 (-0.8%)</td>
+                                    <td>
+                                        <svg class="sparkline-svg" width="70" height="20">
+                                            <path d="M 0 10 L 15 12 L 30 8 L 45 14 L 60 13 L 70 15" stroke="#ff3d71"/>
+                                        </svg>
+                                    </td>
+                                    <td class="text-end">
+                                        <button class="btn btn-sm btn-outline-cyan font-orbitron px-3" onclick="showAssetDetail('VOCS')">INFO</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Sentiment & Metrics -->
+            <div class="col-lg-4">
+                <div class="market-card p-4 d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <h5 class="font-orbitron text-white mb-4"><i class="bi bi-activity text-cyan me-2"></i>ANALISIS SENTIMEN PASAR</h5>
+                        
+                        <!-- Log Item 1 -->
+                        <div class="intel-log border-left-cyan p-3 rounded-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-positive">POSITIF (88%)</span>
+                                <span class="small text-muted">Baru Saja</span>
+                            </div>
+                            <h6 class="text-white small fw-bold mb-1">Eksplorasi Palung Hadal Disetujui</h6>
+                            <p class="text-secondary small mb-0">ABYS mendapatkan izin penambangan penuh di kedalaman 10.000m. Minat institusional melonjak tinggi.</p>
+                        </div>
+
+                        <!-- Log Item 2 -->
+                        <div class="intel-log border-left-rose p-3 rounded-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-negative">NEGATIF (15%)</span>
+                                <span class="small text-muted">12m lalu</span>
+                            </div>
+                            <h6 class="text-white small fw-bold mb-1">Badai Magnetik Laut Dalam Mengancam</h6>
+                            <p class="text-secondary small mb-0">MKMR menghentikan sementara navigasi logistik Epipelagic karena cuaca buruk. Margin operasional berisiko turun.</p>
+                        </div>
+
+                        <!-- Log Item 3 -->
+                        <div class="intel-log border-left-warning p-3 rounded-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-neutral">NETRAL (52%)</span>
+                                <span class="small text-muted">34m lalu</span>
+                            </div>
+                            <h6 class="text-white small fw-bold mb-1">Banda Naira Merilis Data Pasokan Pala</h6>
+                            <p class="text-secondary small mb-0">Fluktuasi pasokan VOCS dinilai wajar oleh bursa pusat. Sentimen retail stabil cenderung menunggu keputusan suku bunga.</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-cyan w-100 py-3 font-orbitron fw-bold mt-4" data-bs-toggle="modal" data-bs-target="#marketHelpModal">
+                        PELAJARI LEBIH LANJUT
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Asset Detail Modal -->
+    <div class="modal fade" id="assetDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content execution-modal-content p-4">
+                <div class="modal-header border-0 justify-content-between pb-0">
+                    <h5 class="modal-title font-orbitron text-cyan text-glow" id="assetModalTitle">DETAIL ASET</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="assetModalContent" class="text-light leading-relaxed">
+                        <!-- Dynamic Content Here -->
+                    </div>
+                </div>
+                <div class="modal-footer border-0 justify-content-end pt-0">
+                    <button type="button" class="btn btn-outline-cyan font-orbitron" data-bs-dismiss="modal">KEMBALI</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- General Market Help Modal -->
+    <div class="modal fade" id="marketHelpModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content execution-modal-content p-4">
+                <div class="modal-header border-0 justify-content-between pb-0">
+                    <h5 class="modal-title font-orbitron text-cyan text-glow"><i class="bi bi-journal-bookmark-fill me-2"></i>PANDUAN LITERASI PASAR</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-light leading-relaxed small">
+                    <h6 class="font-orbitron text-white mb-2">1. Apa itu Indikator Sonar (Sentimen Pasar)?</h6>
+                    <p class="text-secondary mb-3">Sentimen pasar mengukur psikologi kolektif para investor (IOSCO Area 6 - Behavioural Biases). Angka di atas 50% menunjukkan optimisme (Greed), sementara di bawah 50% menunjukkan kepanikan (Fear).</p>
+
+                    <h6 class="font-orbitron text-white mb-2">2. Membaca Ticker & Trend Sparkline</h6>
+                    <p class="text-secondary mb-3">Sparkline memetakan pergerakan harga 24 jam terakhir secara ringkas. Taktik diversifikasi (IOSCO Area 1) mengajarkan kita untuk tidak menempatkan seluruh dana di satu instrumen yang memiliki arah tren negatif.</p>
+
+                    <h6 class="font-orbitron text-white mb-2">3. Risiko vs Pengembalian (Risk and Return)</h6>
+                    <p class="text-secondary mb-0">Saham dengan potensi pertumbuhan tinggi seperti ABYS (tambang laut dalam) memiliki risiko integritas yang tinggi pula dibandingkan instrumen dengan return stabil (obligasi).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Assets details dataset
+        const assetData = {
+            ABYS: {
+                title: "ABYS - Abyssal Mining Corp",
+                summary: "Perusahaan penambangan mineral bawah laut yang berfokus pada ekstraksi nikel dan kobalt di Palung Hadal. Memiliki valuasi pertumbuhan tinggi namun rentan terhadap fluktuasi kebijakan laut internasional.",
+                price: "IDR 4.250 / Lembar",
+                risk: "TINGGI (High Growth / High Volatility)",
+                iosco: "IOSCO Area 2: Investment Product Attributes (Komoditas & Ekuitas Sektor Tinggi)"
+            },
+            LUMO: {
+                title: "LUMO - Lumo AI Companion",
+                summary: "Penyedia infrastruktur kecerdasan buatan untuk navigasi logistik laut dalam dan modul edukasi teradaptasi. Memiliki arus kas stabil dari kontrak jangka panjang dengan armada niaga.",
+                price: "IDR 8.100 / Lembar",
+                risk: "SEDANG (Stable Growth)",
+                iosco: "IOSCO Area 4: Owning Investment Holdings (Memantau Kinerja Emiten Teknologi)"
+            },
+            MKMR: {
+                title: "MKMR - Makmur Maritime",
+                summary: "BUMN armada logistik kargo laut kepulauan Banda Naira. Terkenal sebagai emiten pembagi dividen konsisten, namun pergerakan harga sahamnya cenderung lambat dan sensitif terhadap tarif bahan bakar kapal selam.",
+                price: "IDR 1.950 / Lembar",
+                risk: "RENDAH (Value Stock / Dividend Yield)",
+                iosco: "IOSCO Area 1: Basic Investing Principles (Konsep Pendapatan Dividen & Saham Defensif)"
+            },
+            VOCS: {
+                title: "VOCS - Banda Spice Exchange",
+                summary: "Platform berjangka komoditas rempah tradisional. Memiliki eksposur spekulasi yang sangat tinggi terhadap hasil panen kepulauan, menjadikannya aset trading murni ketimbang investasi jangka panjang.",
+                price: "IDR 620 / Lembar",
+                risk: "SANGAT TINGGI (Pure Speculation)",
+                iosco: "IOSCO Area 7: Investment Scams and Frauds (Memahami Spekulasi Berlebih vs Investasi Legal)"
+            }
+        };
+
+        function showAssetDetail(code) {
+            const data = assetData[code];
+            if (!data) return;
+
+            document.getElementById("assetModalTitle").innerText = data.title;
+            document.getElementById("assetModalContent").innerHTML = `
+                <div class="mb-3">
+                    <small class="text-secondary d-block font-orbitron">DESKRIPSI:</small>
+                    <p class="mb-0 text-white">${data.summary}</p>
+                </div>
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <small class="text-secondary d-block font-orbitron">HARGA SAAT INI:</small>
+                        <strong class="text-cyan font-orbitron">${data.price}</strong>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-secondary d-block font-orbitron">PROFIL RISIKO ASET:</small>
+                        <strong class="text-warning small font-orbitron">${data.risk}</strong>
+                    </div>
+                </div>
+                <div>
+                    <small class="text-secondary d-block font-orbitron">IOSCO MATRIX:</small>
+                    <span class="badge bg-dark text-cyan text-start w-100 p-2 font-inter mt-1 leading-normal border border-secondary border-opacity-20">${data.iosco}</span>
+                </div>
+            `;
+
+            const modal = new bootstrap.Modal(document.getElementById("assetDetailModal"));
+            modal.show();
+        }
+
+        // Glow mouse overlay
+        const glow = document.getElementById("mouseGlow");
+        if(glow) {
+            document.addEventListener("mousemove", (e) => {
+                glow.style.left = e.clientX + "px";
+                glow.style.top = e.clientY + "px";
+            });
+        }
+    </script>
+</body>
+</html>

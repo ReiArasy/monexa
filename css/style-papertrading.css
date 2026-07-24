@@ -1,0 +1,294 @@
+@import "tokens.css";
+
+/* --- INITIAL VARIABLES & SPECIFICATIONS --- */
+:root {
+    --bg-deep-space: var(--monexa-bg-deep);
+    --bg-panel: var(--monexa-bg-panel);
+    --border-glass: var(--monexa-border-glass);
+    --cyan-neon: var(--monexa-cyan);
+    --green-up: var(--monexa-success);
+    --rose-down: var(--monexa-danger);
+    --orange-alert: var(--monexa-warning);
+    --font-orbitron: var(--monexa-font-orbitron);
+    --font-inter: var(--monexa-font-inter);
+}
+
+body {
+    background-color: var(--bg-deep-space);
+    font-family: var(--font-inter);
+    color: #e2e8f0;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.font-orbitron { font-family: var(--font-orbitron); }
+.text-cyan { color: var(--cyan-neon) !important; }
+.text-rose { color: var(--rose-down) !important; }
+.tracking-widest { letter-spacing: 2px; }
+.tracking-wider { letter-spacing: 1px; }
+.fs-8 { font-size: 0.7rem; }
+
+/* --- BACKGROUND GLOW EFFECTS --- */
+#mouseGlow {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.04) 0%, transparent 75%);
+    top: 0; left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.trading-screen {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- NAVBAR TERMINAL STYLE --- */
+.navbar-trading {
+    background: rgba(4, 9, 20, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.btn-icon-nav {
+    color: var(--cyan-neon);
+    border: 1px solid var(--border-glass);
+    background: rgba(0, 240, 255, 0.03);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+.btn-icon-nav:hover {
+    background: var(--cyan-neon);
+    color: #000;
+    box-shadow: 0 0 10px var(--cyan-neon);
+}
+
+.title-core {
+    font-family: var(--font-orbitron);
+    font-weight: 900;
+    font-size: 1.15rem;
+}
+
+/* --- HUD METRIC CARDS --- */
+.hud-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    min-height: 90px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hud-label {
+    font-family: var(--font-orbitron);
+    font-size: 0.65rem;
+    color: #64748b;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.hud-currency {
+    font-size: 0.7rem;
+    color: var(--cyan-neon);
+    font-weight: 600;
+}
+
+.hud-value {
+    font-family: var(--font-orbitron);
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.badge-stable {
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid var(--cyan-neon);
+    color: var(--cyan-neon);
+    font-size: 0.55rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-orbitron);
+}
+
+.ticker-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+.ticker-status.positive { color: var(--green-up); }
+
+/* --- ALERTS & IMPACTS --- */
+.alert-narrative {
+    background: rgba(255, 145, 0, 0.03);
+    border: 1px solid rgba(255, 145, 0, 0.2);
+    backdrop-filter: blur(8px);
+}
+.border-orange-glow {
+    box-shadow: 0 0 15px rgba(255, 145, 0, 0.05);
+}
+.narrative-heading {
+    color: var(--orange-alert);
+    font-family: var(--font-orbitron);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.narrative-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* --- INTERACTIVE CHART CANVAS --- */
+.chart-container-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-glass);
+    box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.02);
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 360px;
+    width: 100%;
+}
+
+/* --- EXECUTION BUTTON LAYOUTS --- */
+.btn-trade-action {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 47%;
+    background: rgba(4, 9, 22, 0.6);
+}
+
+.buy-btn:hover {
+    border-color: var(--green-up);
+    background: rgba(0, 230, 118, 0.06);
+    box-shadow: 0 0 25px rgba(0, 230, 118, 0.15);
+    transform: translateY(-2px);
+}
+.buy-btn:hover .action-title { color: var(--green-up); }
+
+.sell-btn:hover {
+    border-color: var(--rose-down);
+    background: rgba(255, 61, 113, 0.06);
+    box-shadow: 0 0 25px rgba(255, 61, 113, 0.15);
+    transform: translateY(2px);
+}
+.sell-btn:hover .action-title { color: var(--rose-down); }
+
+.action-title {
+    font-family: var(--font-orbitron);
+    font-size: 1.15rem;
+    color: #f1f5f9;
+    letter-spacing: 1px;
+}
+.action-sub {
+    font-size: 0.65rem;
+    font-family: var(--font-orbitron);
+    letter-spacing: 0.5px;
+}
+
+/* --- INTEL LOGS LOWER PANELS --- */
+.intel-log {
+    background: var(--bg-panel);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
+
+.border-left-cyan { border-left: 3px solid var(--cyan-neon); }
+.border-left-rose { border-left: 3px solid var(--rose-down); }
+
+.log-title {
+    font-family: var(--font-orbitron);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+.log-body {
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* Responsive Fixing adjustments */
+@media (max-width: 991.98px) {
+    .btn-trade-action {
+        height: auto;
+        padding: 1.5rem !important;
+    }
+}
+
+/* --- ORDER EXECUTION MODAL & SPINNER STYLING --- */
+.execution-modal-content {
+    background: rgba(4, 9, 20, 0.95) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1.5px solid var(--cyan-neon) !important;
+    border-radius: 16px;
+    box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+}
+
+.spinner-box {
+    width: 70px;
+    height: 70px;
+    position: relative;
+}
+
+.double-spin-neon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: var(--cyan-neon);
+    border-bottom-color: var(--cyan-neon);
+    animation: neon-spin 1.5s linear infinite;
+}
+
+.double-spin-neon::before {
+    content: "";
+    position: absolute;
+    top: 5px; left: 5px; right: 5px; bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-left-color: #34f5ff;
+    border-right-color: #34f5ff;
+    opacity: 0.7;
+    animation: neon-spin-reverse 1s linear infinite;
+}
+
+@keyframes neon-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes neon-spin-reverse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+.text-glow {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+}
+
+.text-secondary-cyan {
+    color: #8db7c4 !important;
+}
+
+.border-left-warning { border-left: 3px solid var(--orange-alert); }
+
+/* --- GUIDED COMPONENT TOUR STYLING --- */
+.tour-highlight {
+    border-color: #00f0ff !important;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.8), inset 0 0 10px rgba(0, 240, 255, 0.3) !important;
+    position: relative;
+    z-index: 1050;
+    transition: all 0.3s ease;
+    animation: tour-pulse 1.5s infinite alternate;
+}
+
+@keyframes tour-pulse {
+    from { box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); }
+    to { box-shadow: 0 0 30px rgba(0, 240, 255, 0.8); }
+}
+
+.bg-success-glow {
+    background: rgba(0, 230, 118, 0.1) !important;
+    border: 1px solid rgba(0, 230, 118, 0.2);
+}

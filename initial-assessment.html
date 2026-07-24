@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monexa OS - Initial Assessment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style_materi.css">
+    <style>
+        .assessment-card {
+            background: rgba(4, 12, 28, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1.5px solid rgba(0, 240, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            max-width: 650px;
+            margin: auto;
+        }
+        .q-option {
+            background: rgba(7, 28, 41, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: left;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-bottom: 12px;
+            font-family: var(--font-inter);
+        }
+        .q-option:hover {
+            background: rgba(15, 57, 77, 0.8);
+            border-color: var(--cyan-neon);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        .q-option.selected {
+            background: rgba(0, 240, 255, 0.15);
+            border-color: var(--cyan-neon);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            color: #fff;
+            font-weight: 500;
+        }
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+        .step-dot.active {
+            background: var(--cyan-neon);
+            box-shadow: 0 0 10px var(--cyan-neon);
+        }
+        .btn-action {
+            font-family: var(--font-orbitron);
+            letter-spacing: 1.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="level-unlock-screen d-flex flex-column justify-content-between p-4 p-md-5">
+        
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="zone-indicator">
+                <span class="text-secondary fw-semibold">MONEXA OS:</span> 
+                <span class="text-cyan tracking-wider ms-1">INITIAL COGNITIVE ASSESSMENT</span>
+            </div>
+            <div class="lumo-logo text-center">
+                <img src="assets/lumo.png" alt="Lumo AI" class="logo-mini mb-1">
+                <div class="logo-text">LUMO AI</div>
+            </div>
+        </div>
+
+        <div class="container my-auto">
+            <div class="assessment-card p-4 p-md-5">
+                
+                <!-- Progress Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-secondary-cyan font-orbitron fs-8" id="stepIndicator">LANGKAH 1 DARI 3</span>
+                    <div>
+                        <span class="step-dot active"></span>
+                        <span class="step-dot"></span>
+                        <span class="step-dot"></span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Risk Profiling -->
+                <div class="assessment-step" id="step1">
+                    <h4 class="font-orbitron text-white mb-3 text-glow">1. Apa tujuan utamamu menyelam di lautan finansial?</h4>
+                    <p class="text-secondary small mb-4">Mengetahui prioritas navigasi Anda membantu memetakan jalur bertahan hidup lambung kapal.</p>
+                    
+                    <button class="q-option text-start" data-val="conservative">
+                        <div class="fw-bold text-cyan mb-1">A. Melindungi Kompartemen Kapal</div>
+                        <div class="small text-secondary">Melindungi dana cadangan utama, siap menerima return bunga rendah asal stabil.</div>
+                    </button>
+                    <button class="q-option text-start" data-val="moderate">
+                        <div class="fw-bold text-cyan mb-1">B. Menyeimbangkan Kecepatan & Bahan Bakar</div>
+                        <div class="small text-secondary">Menyeimbangkan risiko dan pertumbuhan modal untuk menyelam lebih lama.</div>
+                    </button>
+                    <button class="q-option text-start" data-val="aggressive">
+                        <div class="fw-bold text-cyan mb-1">C. Menyelam ke Palung Hadal Terdalam</div>
+                        <div class="small text-secondary">Mengejar keuntungan setinggi-tingginya dan siap menanggung risiko kebocoran lambung parah.</div>
+                    </button>
+                </div>
+
+                <!-- Step 2: Literacy 1 -->
+                <div class="assessment-step d-none" id="step2">
+                    <h4 class="font-orbitron text-white mb-3 text-glow">2. Jika integritas lambung kapalmu menurun akibat badai pasar, instrumen perlindungan apa yang paling stabil?</h4>
+                    <p class="text-secondary small mb-4">Memahami karakteristik keamanan aset berdasarkan tingkat risiko.</p>
+                    
+                    <button class="q-option text-start" data-correct="false">
+                        <div class="fw-bold text-cyan mb-1">A. Kripto Spekulatif Volatilitas Tinggi</div>
+                        <div class="small text-secondary">Aset terdesentralisasi dengan fluktuasi harga ekstrim setiap menitnya.</div>
+                    </button>
+                    <button class="q-option text-start" data-correct="true">
+                        <div class="fw-bold text-cyan mb-1">B. Obligasi Negara dengan Kupon Tetap</div>
+                        <div class="small text-secondary">Surat utang negara berisiko gagal bayar sangat rendah dengan pembayaran kupon bunga berkala.</div>
+                    </button>
+                    <button class="q-option text-start" data-correct="false">
+                        <div class="fw-bold text-cyan mb-1">C. Saham Ber-Leverage Margin Tinggi</div>
+                        <div class="small text-secondary">Transaksi meminjam modal broker untuk melipatgandakan keuntungan/kerugian.</div>
+                    </button>
+                </div>
+
+                <!-- Step 3: Literacy 2 -->
+                <div class="assessment-step d-none" id="step3">
+                    <h4 class="font-orbitron text-white mb-3 text-glow">3. Apa arti dari diversifikasi perbekalan logistik kapal selam?</h4>
+                    <p class="text-secondary small mb-4">Memahami taktik dasar meminimalisir risiko keuangan.</p>
+                    
+                    <button class="q-option text-start" data-correct="false">
+                        <div class="fw-bold text-cyan mb-1">A. Mengonsentrasikan Seluruh Perbekalan di Satu Keranjang</div>
+                        <div class="small text-secondary">Menaruh seluruh dana di satu komoditas agar mudah dipantau.</div>
+                    </button>
+                    <button class="q-option text-start" data-correct="true">
+                        <div class="fw-bold text-cyan mb-1">B. Menyebarkan Pasokan ke Beberapa Kompartemen Berbeda</div>
+                        <div class="small text-secondary">Menempatkan investasi di berbagai instrumen (saham, obligasi, kas) agar kerugian satu tidak menghancurkan seluruh kapal.</div>
+                    </button>
+                    <button class="q-option text-start" data-correct="false">
+                        <div class="fw-bold text-cyan mb-1">C. Membuang Sebagian Besar Logistik Terlalu Cepat</div>
+                        <div class="small text-secondary">Melikuidasi seluruh portofolio saat pasar sedikit bergejolak.</div>
+                    </button>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button class="btn btn-outline-light btn-action px-4 d-none" id="btnPrevAssessment">KEMBALI</button>
+                    <div class="flex-grow-1"></div>
+                    <button class="btn btn-cyan btn-action px-4" id="btnNextAssessment" disabled>LANJUT</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="text-secondary small">Monexa OS - Initial Assessment Phase</div>
+            <div class="text-secondary small">IOSCO COMPETENCY MATRIX v1.2</div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentStep = 1;
+            const totalSteps = 3;
+
+            const btnNext = document.getElementById("btnNextAssessment");
+            const btnPrev = document.getElementById("btnPrevAssessment");
+            const steps = [
+                document.getElementById("step1"),
+                document.getElementById("step2"),
+                document.getElementById("step3")
+            ];
+            const indicatorText = document.getElementById("stepIndicator");
+            const dots = document.querySelectorAll(".step-dot");
+
+            let selections = {
+                risk: null,
+                lit1: null,
+                lit2: null
+            };
+
+            // Option selection click handler
+            document.querySelectorAll(".q-option").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    const stepOptions = this.parentElement.querySelectorAll(".q-option");
+                    stepOptions.forEach(opt => opt.classList.remove("selected"));
+                    this.classList.add("selected");
+
+                    // Save choices
+                    if (currentStep === 1) {
+                        selections.risk = this.getAttribute("data-val");
+                    } else if (currentStep === 2) {
+                        selections.lit1 = this.getAttribute("data-correct") === "true";
+                    } else if (currentStep === 3) {
+                        selections.lit2 = this.getAttribute("data-correct") === "true";
+                    }
+
+                    // Enable Next button
+                    btnNext.disabled = false;
+                });
+            });
+
+            // Navigation event handlers
+            btnNext.addEventListener("click", () => {
+                if (currentStep < totalSteps) {
+                    steps[currentStep - 1].classList.add("d-none");
+                    currentStep++;
+                    steps[currentStep - 1].classList.remove("d-none");
+
+                    // Update UI indicators
+                    updateUI();
+                } else {
+                    // Final submit: save and redirect
+                    localStorage.setItem("risk_profile", selections.risk || "moderate");
+                    localStorage.setItem("assessment_lit1", selections.lit1 ? "correct" : "wrong");
+                    localStorage.setItem("assessment_lit2", selections.lit2 ? "correct" : "wrong");
+                    
+                    window.location.href = "unlocked_materi.html";
+                }
+            });
+
+            btnPrev.addEventListener("click", () => {
+                if (currentStep > 1) {
+                    steps[currentStep - 1].classList.add("d-none");
+                    currentStep--;
+                    steps[currentStep - 1].classList.remove("d-none");
+
+                    // Update UI indicators
+                    updateUI();
+                }
+            });
+
+            function updateUI() {
+                indicatorText.innerText = `LANGKAH ${currentStep} DARI ${totalSteps}`;
+                
+                // Dots active state
+                dots.forEach((dot, idx) => {
+                    if (idx < currentStep) {
+                        dot.classList.add("active");
+                    } else {
+                        dot.classList.remove("active");
+                    }
+                });
+
+                // Prev button visibility
+                if (currentStep === 1) {
+                    btnPrev.classList.add("d-none");
+                } else {
+                    btnPrev.classList.remove("d-none");
+                }
+
+                // Check if current step has a value, to enable/disable Next button
+                let isAnswered = false;
+                if (currentStep === 1 && selections.risk) isAnswered = true;
+                if (currentStep === 2 && selections.lit1 !== null) isAnswered = true;
+                if (currentStep === 3 && selections.lit2 !== null) isAnswered = true;
+
+                btnNext.disabled = !isAnswered;
+
+                // Submit button label
+                if (currentStep === totalSteps) {
+                    btnNext.innerText = "KIRIM ASESMEN";
+                } else {
+                    btnNext.innerText = "LANJUT";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monexa - Lumo AI Dialog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style_materi.css">
+</head>
+<body>
+
+    <main class="dialog-screen d-flex flex-column justify-content-between p-4 p-md-5">
+        
+        <div class="d-flex justify-content-between align-items-center w-100">
+            <div class="zone-indicator">
+                <span class="text-secondary fw-semibold">ZONE 1:</span> 
+                <span class="text-cyan tracking-wider ms-1">THE SHALLOW</span>
+            </div>
+            <div class="position-relative">
+                <div class="lumo-logo text-center" id="lumoChatTrigger" style="cursor: pointer;">
+                    <img src="assets/lumo.png" alt="Lumo AI" class="logo-mini mb-1">
+                    <div class="logo-text">LUMO AI</div>
+                    <span class="badge bg-danger position-absolute translate-middle rounded-pill p-1" id="chatBadge" style="font-size: 0.5rem; top: 5px; right: -5px;">1</span>
+                </div>
+                
+                <!-- Floating Chat Widget -->
+                <div class="lumo-chat-widget d-none" id="lumoFloatingChat" style="position: absolute; top: 50px; right: 0; width: 320px; background: rgba(5, 12, 28, 0.95); border: 1.5px solid rgba(0, 240, 255, 0.2); border-radius: 12px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);">
+                    <div class="chat-header d-flex justify-content-between align-items-center p-3 border-bottom border-secondary border-opacity-20">
+                        <span class="font-orbitron text-cyan fs-7 fw-bold"><i class="bi bi-robot me-1"></i>LUMO CORE v1.2</span>
+                        <button type="button" class="btn-close btn-close-white" style="font-size: 0.7rem;" id="closeLumoChat"></button>
+                    </div>
+                    <div class="chat-messages p-3 text-start" id="chatMessages" style="max-height: 200px; overflow-y: auto; font-family: var(--font-inter); font-size: 0.85rem; line-height: 1.5;">
+                        <div class="chat-bubble mb-3 p-2 rounded" style="background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.15);">
+                            <span class="small text-cyan font-orbitron d-block mb-1">LUMO AI</span>
+                            Selamat datang, Cadet! Aku siap membantumu mempelajari aturan investasi (IOSCO OECD). Ada yang ingin ditanyakan?
+                        </div>
+                    </div>
+                    <div class="chat-input-options p-3 border-top border-secondary border-opacity-20 d-flex flex-column gap-2 text-start" id="chatInputOptions">
+                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.75rem;" data-q="area1">Apa itu IOSCO Area 1?</button>
+                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.75rem;" data-q="area5">Apa hak investor (Area 5)?</button>
+                        <button class="btn btn-outline-cyan btn-sm text-start q-btn" style="font-size: 0.75rem;" data-q="area7">Bagaimana menghindari scam (Area 7)?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container my-auto container-layout">
+            <div class="row align-items-center justify-content-center">
+                
+                <div class="col-lg-5 text-center text-lg-start position-relative z-2 mb-4 mb-lg-0">
+                    <img src="assets/lumo.png" alt="Lumo Character" class="img-fluid character-jelly floating-anim">
+                </div>
+
+                <div class="col-lg-7 position-relative z-2">
+                    <div class="speech-bubble p-4 p-md-5">
+                        <div class="bubble-tag mb-4">
+                            <span class="tag-line"></span> LUMO
+                        </div>
+                        
+                        <h2 class="bubble-title fw-bold text-cyan mb-3" id="typingTitle"></h2>
+                        
+                        <p class="bubble-desc text-secondary leading-relaxed mb-0" id="typingDesc"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end w-100">
+            <button class="btn btn-continue tracking-widest fw-bold px-4 py-2" id="btnContinue">
+                CONTINUE
+            </button>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

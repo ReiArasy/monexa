@@ -1,0 +1,249 @@
+@import "tokens.css";
+
+/* ================= GLOBAL & SHARED CORE STYLES ================= */
+:root {
+    --cyan-neon: var(--monexa-cyan);
+    --cyan-btn: var(--monexa-cyan-dark);
+    --bg-dark: var(--monexa-bg-black);
+    --font-orbitron: var(--monexa-font-orbitron);
+    --font-inter: var(--monexa-font-inter);
+}
+
+/* Base Utility */
+.text-cyan {
+    color: var(--cyan-neon) !important;
+}
+
+.fw-extrabold {
+    font-weight: 800;
+}
+
+/* Zone Indicator & Typography Shared */
+.zone-indicator {
+    font-family: var(--font-orbitron);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Tombol Continue Universal (Menggabungkan kode tombol yang tadinya terpisah) */
+.btn-continue {
+    background-color: var(--cyan-btn);
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 4px; 
+    font-family: var(--font-orbitron);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px rgba(0, 200, 240, 0.2);
+    transition: all 0.25s ease;
+}
+
+.btn-continue:hover {
+    background-color: var(--cyan-neon);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+    transform: scale(1.03);
+    color: var(--bg-dark);
+}
+
+/* ================= SCREEN 1: LEVEL UNLOCK SPECIFIC ================= */
+.level-unlock-screen {
+    min-height: 100vh;
+    width: 100vw;
+    background: radial-gradient(circle at 50% 15%, rgba(2, 7, 18, 0.2) 0%, rgba(1, 4, 10, 0.85) 90%), 
+                url('../assets/materi-bg.png') no-repeat center center / cover;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glowing Center Icon (Matahari) */
+.icon-glow-circle {
+    width: 70px;
+    height: 70px;
+    border: 2px solid var(--cyan-neon);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cyan-neon);
+    font-size: 1.8rem;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2);
+    background: rgba(2, 7, 18, 0.4);
+    animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.level-title {
+    font-family: var(--font-orbitron);
+    font-size: calc(1.3rem + 1.2vw);
+    letter-spacing: 1px;
+    text-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+}
+
+.level-description {
+    font-family: var(--font-inter);
+    font-size: 1.15rem;
+    max-width: 650px;
+    font-weight: 400;
+    color: #e2e8f0 !important;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+/* ================= SCREEN 2: DIALOG SCREEN SPECIFIC ================= */
+.dialog-screen {
+    min-height: 100vh;
+    width: 100vw;
+    background: radial-gradient(circle at 50% 30%, rgba(2, 7, 18, 0.1) 0%, rgba(1, 4, 10, 0.9) 90%), 
+                url('../assets/materi-bg.png') no-repeat center center / cover;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.logo-mini {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(0, 240, 255, 0.15);
+    border: 1px solid var(--cyan-neon);
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.6));
+}
+
+.logo-text {
+    font-family: var(--font-orbitron);
+    font-size: 0.65rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+/* Character Styling */
+.character-jelly {
+    max-height: 480px;
+    filter: drop-shadow(0 0 35px rgba(0, 240, 255, 0.25));
+}
+
+.floating-anim {
+    animation: floatUpAndDown 4s ease-in-out infinite;
+}
+
+/* Chat Speech Bubble Base */
+.speech-bubble {
+    background: rgba(4, 12, 28, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1.5px solid rgba(0, 240, 255, 0.2);
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Menggabungkan properti pseudo-element segitiga balon */
+.speech-bubble::before, .speech-bubble::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-style: solid;
+    border-color: transparent;
+}
+
+.speech-bubble::before {
+    left: -15px;
+    border-width: 12px 15px 12px 0;
+    border-right-color: rgba(0, 240, 255, 0.2);
+    z-index: 1;
+}
+
+.speech-bubble::after {
+    left: -13px;
+    border-width: 11px 14px 11px 0;
+    border-right-color: rgba(4, 12, 28, 0.95);
+    z-index: 2;
+}
+
+/* Bubble Inner Elements */
+.bubble-tag {
+    font-family: var(--font-orbitron);
+    font-size: 0.75rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag-line {
+    width: 3px;
+    height: 14px;
+    background-color: var(--cyan-neon);
+    box-shadow: 0 0 8px var(--cyan-neon);
+}
+
+.bubble-title, .bubble-desc {
+    font-family: var(--font-inter);
+}
+
+.bubble-title {
+    font-size: calc(1.2rem + 0.8vw);
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+.bubble-desc {
+    font-size: 1.1rem;
+    color: #94a3b8 !important;
+    line-height: 1.6;
+}
+
+/* Typing Effect Cursor */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+    color: var(--cyan-neon);
+    margin-left: 2px;
+}
+
+/* ================= ANIMATIONS & RESPONSIVE ================= */
+@keyframes floatUpAndDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 15px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1); }
+    50% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.7), inset 0 0 20px rgba(0, 240, 255, 0.3); }
+}
+
+/* Responsive Balon Dialog untuk Mobile */
+@media (max-width: 991.98px) {
+    .speech-bubble::before, .speech-bubble::after {
+        left: 50%;
+        transform: translateX(-50%) rotate(90deg);
+    }
+    .speech-bubble::before { top: -24px; }
+    .speech-bubble::after { top: -22px; }
+}
+
+/* --- LUMO FLOATING CHAT WIDGET STYLING --- */
+@keyframes pulse-glow-red {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 61, 113, 0.4); }
+    50% { box-shadow: 0 0 15px rgba(255, 61, 113, 0.9); }
+}
+
+.lumo-chat-widget .chat-messages::-webkit-scrollbar {
+    width: 4px;
+}
+.lumo-chat-widget .chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+.lumo-chat-widget .chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(0, 240, 255, 0.2);
+    border-radius: 2px;
+}
+.lumo-chat-widget .chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 240, 255, 0.4);
+}

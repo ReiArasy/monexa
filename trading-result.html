@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monexa OS - Trading Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-papertrading.css">
+    <style>
+        /* Speech Bubble styles cloned from style_materi.css */
+        .speech-bubble {
+            background: rgba(4, 12, 28, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1.5px solid rgba(0, 240, 255, 0.2);
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        .bubble-tag {
+            font-family: var(--font-orbitron);
+            font-size: 0.8rem;
+            color: var(--cyan-neon);
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .tag-line {
+            display: inline-block;
+            width: 15px;
+            height: 2px;
+            background: var(--cyan-neon);
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .bubble-title {
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+        .bubble-desc {
+            font-family: var(--font-inter);
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .character-jelly {
+            max-height: 240px;
+            filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.25));
+        }
+        .floating-anim {
+            animation: floatUpAndDown 4s ease-in-out infinite;
+        }
+        @keyframes floatUpAndDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .text-green-neon {
+            color: #00e676 !important;
+            text-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+        }
+        .text-rose-neon {
+            color: #ff3d71 !important;
+            text-shadow: 0 0 10px rgba(255, 61, 113, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mouseGlow"></div>
+
+    <main class="trading-screen p-3 p-md-4">
+        
+        <header class="text-center mb-5 navbar-trading p-3 rounded-3">
+            <h5 class="title-core tracking-widest text-white mb-0 font-orbitron">LAPORAN ABYSS DECISION</h5>
+            <small class="text-cyan tracking-wider font-orbitron fs-8">TRANSAKSI CADET BERHASIL DISINKRONISASI</small>
+        </header>
+
+        <div class="container my-auto">
+            <div class="row g-4 align-items-center">
+                <!-- AI Mentor Feedback Column -->
+                <div class="col-lg-6">
+                    <div class="row align-items-center">
+                        <div class="col-sm-4 text-center mb-3 mb-sm-0">
+                            <img src="assets/lumo.png" alt="Lumo AI" class="img-fluid character-jelly floating-anim">
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="speech-bubble p-4">
+                                <div class="bubble-tag mb-3">
+                                    <span class="tag-line"></span> LUMO AI
+                                </div>
+                                <h5 class="bubble-title text-white fw-bold mb-2" id="lumo-title">Analisis Sentimen</h5>
+                                <p class="bubble-desc mb-0" id="lumo-feedback">
+                                    Menganalisis keputusan navigasi...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simulation Stats Column -->
+                <div class="col-lg-6">
+                    <div class="hud-card p-4 text-start" style="background: rgba(5, 12, 28, 0.95); border: 1.5px solid var(--border-glass);">
+                        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom border-secondary border-opacity-10 pb-2">
+                            <span class="font-orbitron text-secondary small">KODE COGNITIVE DRIVES</span>
+                            <span class="font-orbitron text-cyan fs-7" id="cadet-name-tag">CADET: -</span>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-muted small font-orbitron mb-1">STRATEGI DI EKSEKUSI:</div>
+                            <h4 class="font-orbitron text-white fw-bold" id="action-badge">-</h4>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <div class="p-3 rounded-3" style="background: rgba(2, 6, 14, 0.8); border: 1px solid rgba(255, 255, 255, 0.02);">
+                                    <div class="text-muted small font-orbitron">HASIL TRANSAKSI</div>
+                                    <h4 class="fw-bold mt-1 font-orbitron" id="pnl-value">-</h4>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 rounded-3" style="background: rgba(2, 6, 14, 0.8); border: 1px solid rgba(255, 255, 255, 0.02);">
+                                    <div class="text-muted small font-orbitron">SALDO AKHIR</div>
+                                    <h4 class="text-white fw-bold mt-1 font-orbitron" id="balance-value">-</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-3 mb-4" style="background: rgba(255, 145, 0, 0.05); border: 1px solid rgba(255, 145, 0, 0.15);">
+                            <div class="d-flex gap-2">
+                                <i class="bi bi-info-circle text-warning"></i>
+                                <div class="small text-secondary-cyan">
+                                    <strong>Status Modul:</strong> Ini adalah simulasi transaksi offline/dummy data untuk demo pitching prototype Monexa. Real Broker API & AI Mentor Live Engine akan terhubung di tahap produksi.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-cyan w-100 py-3 font-orbitron fw-bold" id="btnViewEnding">
+                                LIHAT CERMIN KEPUTUSAN
+                            </button>
+                            <div class="text-secondary small mt-2 font-orbitron fs-8">
+                                <i class="bi bi-rocket-takeoff-fill"></i> Zone 2 (Coral Depths) akan segera hadir!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cadetName = localStorage.getItem("cadetName") || "Penyelam";
+            const tradeAction = localStorage.getItem("trade_action") || "LONG";
+
+            document.getElementById("cadet-name-tag").innerText = `CADET: ${cadetName.toUpperCase()}`;
+
+            const actionBadge = document.getElementById("action-badge");
+            const pnlValue = document.getElementById("pnl-value");
+            const balanceValue = document.getElementById("balance-value");
+            const lumoTitle = document.getElementById("lumo-title");
+            const lumoFeedback = document.getElementById("lumo-feedback");
+
+            if (tradeAction === "LONG") {
+                actionBadge.innerText = "LONG (GO BUY)";
+                actionBadge.className = "font-orbitron text-green-neon fw-bold";
+                pnlValue.innerText = "+IDR 450.000";
+                pnlValue.className = "fw-bold mt-1 font-orbitron text-green-neon";
+                balanceValue.innerText = "IDR 4.450.000";
+
+                lumoTitle.innerText = "Keputusan Tepat, Cadet!";
+                lumoFeedback.innerHTML = `Langkah <strong>LONG</strong> sangat tepat! Kamu mengikuti data sentimen institutional whale yang sedang melakukan akumulasi. Momentum pergerakan aset didukung likuiditas kuat, sehingga memicu pembalikan harga naik di zona ini.`;
+            } else {
+                actionBadge.innerText = "SHORT (GO SELL)";
+                actionBadge.className = "font-orbitron text-rose-neon fw-bold";
+                pnlValue.innerText = "-IDR 300.000";
+                pnlValue.className = "fw-bold mt-1 font-orbitron text-rose-neon";
+                balanceValue.innerText = "IDR 3.700.000";
+
+                lumoTitle.innerText = "Pelajaran Berharga, Cadet!";
+                lumoFeedback.innerHTML = `Melakukan <strong>SHORT</strong> di bawah tekanan sentimen paus sangatlah berisiko. Meskipun protokol DeFi menunjukkan arus keluar ke stablecoin, momentum beli paus tetap mendominasi. Perlindungan margin adalah kunci pertahananmu!`;
+            }
+
+            // Click listener for ending page redirect
+            const btnViewEnding = document.getElementById("btnViewEnding");
+            if (btnViewEnding) {
+                btnViewEnding.addEventListener("click", () => {
+                    const risk = localStorage.getItem("risk_profile") || "moderate";
+                    const quiz = localStorage.getItem("quiz_correct") === "true";
+                    const trade = localStorage.getItem("trade_action") || "LONG";
+
+                    let endingPage = "ending-5.html"; // Fallback to Balanced
+
+                    if (quiz && trade === "LONG") {
+                        if (risk === "aggressive") endingPage = "ending-6.html";      // The Makmur Legacy
+                        else if (risk === "moderate") endingPage = "ending-5.html";  // The Balanced Diver
+                        else endingPage = "ending-3.html";                           // The Fearful Diver (Conservative)
+                    } else if (quiz && trade === "SHORT") {
+                        if (risk === "aggressive") endingPage = "ending-5.html";      // The Balanced Diver
+                        else endingPage = "ending-3.html";                           // The Fearful Diver
+                    } else if (!quiz && trade === "LONG") {
+                        if (risk === "aggressive" || risk === "moderate") endingPage = "ending-4.html"; // The Reckless Diver
+                        else endingPage = "ending-2.html";                           // The Trapped Diver
+                    } else { // !quiz && trade === "SHORT"
+                        if (risk === "conservative") endingPage = "ending-2.html";   // The Trapped Diver
+                        else endingPage = "ending-1.html";                           // The Lost Diver
+                    }
+
+                    window.location.href = endingPage;
+                });
+            }
+
+            // Glow mouse overlay
+            const glow = document.getElementById("mouseGlow");
+            if (glow) {
+                document.addEventListener("mousemove", (e) => {
+                    glow.style.left = e.clientX + "px";
+                    glow.style.top = e.clientY + "px";
+                });
+            }
+        });
+    </script>
+</body>
+</html>

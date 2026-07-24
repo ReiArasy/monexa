@@ -1,0 +1,206 @@
+@import "tokens.css";
+
+/* --- VARIABLE & RESET SYSTEM --- */
+:root {
+    --cyan-primary: var(--monexa-cyan);
+    --cyan-glow: var(--monexa-cyan-glow);
+    --bg-main: var(--monexa-bg-darker);
+    --card-fill: var(--monexa-card-fill);
+    --border-color: rgba(0, 240, 255, 0.15);
+    --font-orbitron: var(--monexa-font-orbitron);
+    --font-inter: var(--monexa-font-inter);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: #e2e8f0;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Base Screen Layout */
+.quiz-screen {
+    min-height: 100vh;
+    width: 100vw;
+    background: radial-gradient(circle at 50% 50%, rgba(2, 12, 32, 0.4) 0%, #01040a 100%);
+    position: relative;
+}
+
+.fs-7 { font-size: 0.75rem; }
+
+/* --- HEADER / PROGRESS BAR ANIMATION --- */
+.hud-label {
+    font-family: var(--font-orbitron);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.custom-progress {
+    height: 6px;
+    background-color: rgba(0, 240, 255, 0.05) !important;
+    border-radius: 50px;
+    max-width: 300px;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+/* --- INTERACTIVE MAIN CARD --- */
+.quiz-main-card {
+    background: var(--card-fill);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid var(--border-color);
+    border-radius: 16px;
+    max-width: 750px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 240, 255, 0.03);
+    animation: floatCard 6s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.icon-badge-cyan {
+    width: 42px;
+    height: 42px;
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid var(--cyan-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cyan-primary);
+    box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.quiz-card-title {
+    font-family: var(--font-orbitron);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.text-secondary-cyan {
+    color: #00a8ff;
+    font-size: 0.75rem;
+    font-family: var(--font-inter);
+}
+
+.quiz-question {
+    font-family: var(--font-inter);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #cbd5e1 !important;
+}
+
+/* --- BUTTON OPTIONS OPTIONS --- */
+.option-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    width: 100%;
+    font-family: var(--font-inter);
+    font-size: 0.95rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.option-btn:hover {
+    background: rgba(0, 240, 255, 0.03);
+    border-color: rgba(0, 240, 255, 0.3);
+    color: #f1f5f9;
+    transform: translateX(4px);
+}
+
+.option-btn.selected {
+    background: rgba(0, 240, 255, 0.08) !important;
+    border-color: var(--cyan-primary) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15), inset 0 0 10px rgba(0, 240, 255, 0.05);
+}
+
+.opt-prefix {
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+/* --- TIMER & BOTTOM ACTIONS --- */
+.timer-display {
+    font-family: var(--font-orbitron);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.text-blink {
+    animation: textBlinkEffect 1.5s infinite steps(1);
+}
+
+@keyframes textBlinkEffect {
+    50% { opacity: 0.4; }
+}
+
+.btn-action-dive {
+    background-color: #00c8f0;
+    color: #01040a;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-orbitron);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    box-shadow: 0 0 20px rgba(0, 200, 240, 0.3);
+    transition: all 0.25s ease;
+}
+
+.btn-action-dive:hover:not(:disabled) {
+    background-color: var(--cyan-primary);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
+    color: #01040a;
+    transform: translateY(-1px);
+}
+
+.btn-action-dive:disabled {
+    background-color: #0d293a;
+    color: #004e69;
+    box-shadow: none;
+    cursor: not-allowed;
+    border: 1px solid rgba(0, 240, 255, 0.05);
+}
+
+/* --- FOOTER UTILITIES METRIC BOXES --- */
+.metric-box {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    min-width: 100px;
+}
+
+.metric-label {
+    font-family: var(--font-orbitron);
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+}
+
+.metric-val {
+    font-family: var(--font-orbitron);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+.connection-text {
+    font-family: var(--font-orbitron);
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+}
+
+.node-bar {
+    width: 12px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    display: inline-block;
+}
+
+.node-bar.active {
+    background: #00a8ff;
+    box-shadow: 0 0 8px rgba(0, 168, 255, 0.6);
+}

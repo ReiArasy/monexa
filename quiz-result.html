@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monexa OS - Quiz Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-quiz.css">
+</head>
+<body>
+
+    <main class="quiz-screen d-flex flex-column justify-content-between p-4 p-md-5">
+        
+        <div class="header-status">
+            <div class="hud-label text-cyan mb-2">INTEGRITAS LAMBUNG: <span id="hull-value">96%</span></div>
+            <div class="progress custom-progress bg-dark-cyan">
+                <div class="progress-bar bg-cyan progress-bar-striped progress-bar-animated" id="hull-progress-bar" style="width: 96%"></div>
+            </div>
+        </div>
+
+        <div class="container my-auto">
+            <div class="quiz-main-card mx-auto p-4 p-md-5 text-center">
+                
+                <div class="d-flex justify-content-center mb-4">
+                    <div class="icon-badge-cyan" id="result-icon-badge" style="width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; background: rgba(0, 240, 255, 0.1); border: 2px solid var(--cyan-primary); box-shadow: 0 0 20px var(--cyan-glow);">
+                        <i class="bi bi-shield-check" id="result-icon"></i>
+                    </div>
+                </div>
+
+                <h3 class="font-orbitron text-white mb-2" id="result-title">SINKRONISASI SELESAI</h3>
+                <div class="badge bg-success font-orbitron px-3 py-2 mb-4" id="result-status-badge">JAWABAN TERVERIFIKASI</div>
+
+                <hr class="border-secondary-cyan opacity-25 mb-4">
+
+                <p class="quiz-question text-light mb-4" id="result-feedback">
+                    Memuat hasil verifikasi sensor...
+                </p>
+
+                <div class="p-3 mb-4 rounded-3 text-start" id="result-metric-impact" style="background: rgba(4, 12, 28, 0.5); border: 1px solid rgba(0, 240, 255, 0.08);">
+                    <div class="small text-muted mb-1 font-orbitron">DAMPAK METRIK SISTEM:</div>
+                    <div class="fw-bold" id="impact-detail">Integritas Lambung: +5% (Glow optimal)</div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-action-dive tracking-wider fw-bold px-5 py-3 w-100" href="paper-trading.html" id="btnContinueResult">
+                        LANJUTKAN NAVIGASI
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-end w-100 flex-wrap gap-3">
+            <div class="d-flex gap-3">
+                <div class="metric-box p-2 px-3">
+                    <div class="metric-label text-muted">KEDALAMAN</div>
+                    <div class="metric-val text-cyan fw-bold">11,034m</div>
+                </div>
+                <div class="metric-box p-2 px-3">
+                    <div class="metric-label text-muted">TEKANAN</div>
+                    <div class="metric-val text-cyan fw-bold">15,000 PSI</div>
+                </div>
+            </div>
+
+            <div class="text-end d-flex flex-column align-items-end">
+                <div class="d-flex gap-1 mb-1">
+                    <span class="node-bar active"></span>
+                    <span class="node-bar active"></span>
+                    <span class="node-bar active"></span>
+                </div>
+                <div class="connection-text text-muted">SECURE CONNECTION: MONEXA_OS_v4.2</div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const isCorrect = localStorage.getItem("quiz_correct") === "true";
+            
+            const hullValue = document.getElementById("hull-value");
+            const hullProgressBar = document.getElementById("hull-progress-bar");
+            const resultIconBadge = document.getElementById("result-icon-badge");
+            const resultIcon = document.getElementById("result-icon");
+            const resultTitle = document.getElementById("result-title");
+            const resultStatusBadge = document.getElementById("result-status-badge");
+            const resultFeedback = document.getElementById("result-feedback");
+            const impactDetail = document.getElementById("impact-detail");
+            
+            if (isCorrect) {
+                // Correct path
+                hullValue.innerText = "100%";
+                hullProgressBar.style.width = "100%";
+                hullProgressBar.style.setProperty("background-color", "#00e676", "important");
+                
+                resultIcon.className = "bi bi-shield-fill-check text-success";
+                resultIconBadge.style.borderColor = "#00e676";
+                resultIconBadge.style.background = "rgba(0, 230, 118, 0.1)";
+                resultIconBadge.style.boxShadow = "0 0 20px rgba(0, 230, 118, 0.4)";
+                
+                resultTitle.innerText = "COGNITIVE STABILITY SECURED";
+                resultTitle.style.color = "#00e676";
+                resultStatusBadge.innerText = "DEKONTAMINASI BERHASIL";
+                resultStatusBadge.className = "badge bg-success font-orbitron px-3 py-2 mb-4";
+                
+                resultFeedback.innerHTML = `Obligasi (Surat Utang Negara) memang menawarkan stabilitas tinggi di kedalaman rendah (The Shallow). Kupon bunga tetap yang dibayarkan secara berkala memberikan aliran kas yang dapat diandalkan tanpa risiko penurunan modal yang besar seperti saham di zona yang lebih bergolak.`;
+                impactDetail.innerHTML = `<span class="text-success fw-bold"><i class="bi bi-arrow-up-circle-fill"></i> INTEGRITAS LAMBUNG MAKSIMAL (+5%): 100%</span><br><span class="text-cyan small font-orbitron">+100 XP CADET DIBERIKAN</span>`;
+            } else {
+                // Incorrect path
+                hullValue.innerText = "86%";
+                hullProgressBar.style.width = "86%";
+                hullProgressBar.style.setProperty("background-color", "#ff3d71", "important");
+                
+                resultIcon.className = "bi bi-shield-fill-exclamation text-danger";
+                resultIconBadge.style.borderColor = "#ff3d71";
+                resultIconBadge.style.background = "rgba(255, 61, 113, 0.1)";
+                resultIconBadge.style.boxShadow = "0 0 20px rgba(255, 61, 113, 0.4)";
+                
+                resultTitle.innerText = "COMPARTMENT PRESSURE LEAK";
+                resultTitle.style.color = "#ff3d71";
+                resultStatusBadge.innerText = "COGNITIVE ERROR TERDETEKSI";
+                resultStatusBadge.className = "badge bg-danger font-orbitron px-3 py-2 mb-4";
+                
+                resultFeedback.innerHTML = `Pilihan Anda salah. Di kedalaman The Shallow, obligasi lebih unggul karena memberikan pendapatan tetap berupa kupon berkala yang stabil. Saham atau spekulasi berisiko tinggi dapat membocorkan integritas lambung Anda akibat fluktuasi tekanan pasar yang tidak terkendali.`;
+                impactDetail.innerHTML = `<span class="text-danger fw-bold"><i class="bi bi-arrow-down-circle-fill"></i> KEBOCORAN LAMBUNG TERDETEKSI (-10%): 86%</span><br><span class="text-secondary small font-orbitron">SHIELD MENIPIS: REKONSILIASI KOGNITIF DIANJURKAN PADA MISI BERIKUTNYA</span>`;
+            }
+        });
+    </script>
+</body>
+</html>
